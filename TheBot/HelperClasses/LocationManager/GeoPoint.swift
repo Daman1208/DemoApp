@@ -1,9 +1,9 @@
 //
 //  GeoPoint.swift
-//  Social Gram
+//  TheBot
 //
-//  Created by Daman on 25/10/16.
-//  Copyright © 2016 Bison. All rights reserved.
+//  Created by Daman on 27/07/17.
+//  Copyright © 2017 Tarsem. All rights reserved.
 //
 
 import UIKit

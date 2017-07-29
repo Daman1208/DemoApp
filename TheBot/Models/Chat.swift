@@ -15,8 +15,9 @@ enum ChatType: String{
 }
 
 var sampleMessages:[String]{
-    return ["How are you??", "Today is \(Date().customFormattedDate)", "You are looking good today!!", "You are smart!", "Stay positive"]
+    return ["How are you??", "Today is \(Date().customFormattedDate)", "https://biosafehort.files.wordpress.com/2014/05/sweet-william-4123_640.jpg", "You are looking good today!!", "You are smart!", "http://www.ios9wallpaperhd.com/wp-content/uploads/Nature/1080/Nature%20iOS%209%20Wallpaper%20210.jpg", "Stay positive", "http://www.ios9wallpaperhd.com/wp-content/uploads/Nature/750/Nature%20iOS%209%20Wallpaper%20135.jpg", "https://s-media-cache-ak0.pinimg.com/736x/16/1c/12/161c12e9afd1bc7eda298d2074c70019--iphone-backgrounds-phone-wallpapers.jpg"]
 }
+
 
 class Chat: Object {
 
@@ -30,6 +31,9 @@ class Chat: Object {
         let message =  sampleMessages[index]
         let response = Chat.getBotChatTemplate()
         response.message = message
+        if message.hasPrefix("http"){
+            response.type = ChatType.Image.rawValue
+        }
         return response
     }
     
@@ -42,12 +46,3 @@ class Chat: Object {
     }
 }
 
-
-//
-//class ChatList: Object {
-//    
-//    dynamic var message = ""
-//    dynamic var createdAt = Date()
-//    let tasks = List<Chat>()
-//    
-//}

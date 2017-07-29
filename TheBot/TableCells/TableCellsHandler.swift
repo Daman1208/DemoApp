@@ -10,6 +10,8 @@ import UIKit
 
 extension ChatCell{
     
+    //MARK:- Register Chat Cells
+    
     class func registerMainNibs(_ tableView: UITableView){
         tableView.register(UINib(nibName: "ChatTextCell", bundle: nil), forCellReuseIdentifier: "ChatTextCell")
         tableView.register(UINib(nibName: "ChatImageCell", bundle: nil), forCellReuseIdentifier: "ChatImageCell")
@@ -18,6 +20,8 @@ extension ChatCell{
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 335
     }
+    
+    //MARK:- Dequeue Chat Cells
     
     class func dequeMainCell(_ tableView: UITableView, _ type: String, isBot: Bool, _ indexPath: IndexPath) -> ChatCell{
         var ContentCellIdentifier = ""

@@ -20,12 +20,22 @@ class ViewController: BaseViewController {
     //MARK:- Properties
     var chatArray:Results<Chat>!
     var placeholderLabel : UILabel!
+    var firstTime = true
     
     //MARK:- View Hierarchy
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if firstTime{
+            scrollToLastCell()
+            firstTime = false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,11 +103,11 @@ class ViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    override func unregisterKeyboardNotifications(){
+    func unregisterKeyboardNotifications(){
         NotificationCenter.default.removeObserver(self)
     }
     
-    override func keyboardWillShow(notification:NSNotification){
+    func keyboardWillShow(notification:NSNotification){
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             // let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
             self.constTextContainerBottom.constant = keyboardSize.height
@@ -109,7 +119,7 @@ class ViewController: BaseViewController {
         
     }
     
-    override func keyboardWillHide(notification:NSNotification){
+    func keyboardWillHide(notification:NSNotification){
         self.constTextContainerBottom.constant = 0
         self.view.layoutIfNeeded()
     }
@@ -160,6 +170,14 @@ class ViewController: BaseViewController {
     }
     
 }
+
+//MARK:- Handle Keyboard Notifications
+
+extension ViewController{
+    
+}
+
+//MARK:- Table View Delegates
 
 extension ViewController:UITableViewDataSource{
     

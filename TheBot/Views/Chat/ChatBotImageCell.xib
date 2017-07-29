@@ -24,6 +24,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="L62-IL-Q5D" secondAttribute="height" multiplier="80:67" id="RKD-O5-mil"/>
+                            <constraint firstAttribute="height" constant="201" id="lNX-Y1-e71"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

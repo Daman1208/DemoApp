@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 
 class ChatCell: UITableViewCell {
 
@@ -26,8 +26,18 @@ class ChatCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    //MARK:- Configure cell data
+    
     func configureFor(chat: Chat){
-        lblMessage?.text = chat.message
+        if chat.type == ChatType.Image.rawValue{
+            guard let image = URL.init(string: chat.message) else{
+                return
+            }
+             imgMedia?.kf.setImage(with: ImageResource.init(downloadURL:image))
+        }
+        else{
+            lblMessage?.text = chat.message
+        }
         lblTime?.text = chat.createdAt.customFormattedTime.lowercased()
     }
 }

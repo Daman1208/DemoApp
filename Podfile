@@ -7,4 +7,5 @@ target 'TheBot' do
 
   # Pods for TheBot
   pod 'RealmSwift'
+  pod 'Kingfisher'
 end
