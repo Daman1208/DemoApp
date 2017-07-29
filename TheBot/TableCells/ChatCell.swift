@@ -11,6 +11,10 @@ import UIKit
 
 class ChatCell: UITableViewCell {
 
+    @IBOutlet weak var lblMessage: UILabel?
+    @IBOutlet weak var lblTime: UILabel?
+    @IBOutlet weak var imgMedia: UIImageView?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,6 +27,7 @@ class ChatCell: UITableViewCell {
     }
 
     func configureFor(chat: Chat){
-        
+        lblMessage?.text = chat.message
+        lblTime?.text = chat.createdAt.customFormattedTime.lowercased()
     }
 }

@@ -50,25 +50,44 @@ class ViewController: BaseViewController {
         
         super.dismissScrollViewOnTap(scrollview: tableView)
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
-        tableView.estimatedRowHeight = 70
-        tableView.rowHeight = UITableViewAutomaticDimension
         
         textView.delegate = self
         placeholderLabel = textView.placeholder(text:"Enter some text...")
         
         ChatCell.registerMainNibs(tableView)
         tableView.dataSource = self
+        reloadChatAndUpdateUI()
+        if chatArray.count == 0{
+            CurrentLocation.getCurentLocation(true, completion: { (location, error) in
+                if error == nil{
+                    CurrentLocation.getAddressAtLocation(location!, success: { (address) in
+                        if address == nil{
+                            return
+                        }
+                        DispatchQueue.main.async{
+                            self.sendLocation(address!)
+                        }
+                    })
+                }
+            })
+        }
     }
     
+    //MARK:- Update Chat Data
+
     func reloadChatAndUpdateUI(){
         chatArray = uiRealm.objects(Chat.self)
         self.tableView.reloadData()
     }
     
+    //MARK:- textView Delegate
+
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
     }
     
+    //MARK:- Notifications
+
     func registerKeyboardNotifications(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -105,6 +124,8 @@ class ViewController: BaseViewController {
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
     }
     
+    //MARK:- SendMessage
+
     @IBAction func send(_ sender: Any) {
         let content = String.trim(textView.text)
         if content.isEmpty {
@@ -117,6 +138,7 @@ class ViewController: BaseViewController {
         chat.createdAt = Date()
         chat.type = ChatType.Text.rawValue
         sendMessage([chat])
+        self.perform(#selector(sendBotMessage), with: nil, afterDelay: 2)
     }
     
     func sendMessage(_ array:[Chat]){
@@ -126,6 +148,17 @@ class ViewController: BaseViewController {
         reloadChatAndUpdateUI()
         scrollToLastCell()
     }
+
+    func sendBotMessage(){
+        sendMessage([Chat.getRandomResponse()])
+    }
+    
+    func sendLocation(_ address: String){
+        let response = Chat.getBotChatTemplate()
+        response.message = "Your current location is " + address
+        sendMessage([response])
+    }
+    
 }
 
 extension ViewController:UITableViewDataSource{
@@ -137,6 +170,7 @@ extension ViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let chat = chatArray[indexPath.row]
         let cell = ChatCell.dequeMainCell(self.tableView, chat.type, isBot: chat.isBot, indexPath)
+        cell.configureFor(chat: chat)
         return cell;
     }
 }

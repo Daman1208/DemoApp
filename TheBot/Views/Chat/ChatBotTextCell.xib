@@ -1,10 +1,64 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="90" id="DWD-5Y-9zr" customClass="ChatCell" customModule="TheBot" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DWD-5Y-9zr" id="LvF-G6-mnF">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pCy-fP-0or">
+                        <rect key="frame" x="8" y="8" width="76" height="56"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldq-dr-0Gr">
+                        <rect key="frame" x="16" y="16" width="60" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="uK4-1g-jlw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U20-cW-Ecc">
+                        <rect key="frame" x="16" y="42" width="29.5" height="14"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ldq-dr-0Gr" secondAttribute="trailing" constant="16" id="0NX-UX-8o0"/>
+                    <constraint firstItem="ldq-dr-0Gr" firstAttribute="leading" secondItem="LvF-G6-mnF" secondAttribute="leading" constant="16" id="6E4-Fb-tfN"/>
+                    <constraint firstItem="U20-cW-Ecc" firstAttribute="top" secondItem="ldq-dr-0Gr" secondAttribute="bottom" constant="8" id="Ctg-O3-wnU"/>
+                    <constraint firstItem="pCy-fP-0or" firstAttribute="leading" secondItem="ldq-dr-0Gr" secondAttribute="leading" constant="-8" id="HZk-6R-gSf"/>
+                    <constraint firstItem="pCy-fP-0or" firstAttribute="trailing" secondItem="ldq-dr-0Gr" secondAttribute="trailing" constant="8" id="aGN-Cg-Q8z"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="U20-cW-Ecc" secondAttribute="bottom" constant="8" id="aQu-D8-aCd"/>
+                    <constraint firstItem="U20-cW-Ecc" firstAttribute="bottom" secondItem="pCy-fP-0or" secondAttribute="bottom" constant="-8" id="bbA-aK-u0i"/>
+                    <constraint firstItem="U20-cW-Ecc" firstAttribute="leading" secondItem="ldq-dr-0Gr" secondAttribute="leading" id="cCY-0N-M6r"/>
+                    <constraint firstItem="pCy-fP-0or" firstAttribute="top" secondItem="ldq-dr-0Gr" secondAttribute="top" constant="-8" id="oOV-QS-G6b"/>
+                    <constraint firstItem="ldq-dr-0Gr" firstAttribute="top" secondItem="LvF-G6-mnF" secondAttribute="top" constant="16" id="vsE-c4-FVz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lblMessage" destination="ldq-dr-0Gr" id="37c-Dg-nZR"/>
+                <outlet property="lblTime" destination="U20-cW-Ecc" id="zcG-St-t1h"/>
+            </connections>
+            <point key="canvasLocation" x="-15.5" y="-79"/>
+        </tableViewCell>
     </objects>
 </document>
